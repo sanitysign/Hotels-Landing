@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotels</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <script defer src="https://api-maps.yandex.ru/2.1/?&lang=ru_RU"></script>
+  <script defer src="scripts/main.js"></script>
+</head>
+
+<body>
+  <header class="header">
+    <div class="container header__container">
+      <div class="header__top">
+        <div class="header__left">
+          <img src="img/Logo.webp" loading="lazy" alt="лого" class="header__logo">
+          <a href="tel:+7495322544834" class="header__tel">+7 495 322 54 48</a>
+        </div>
+        <div class="header__right">
+          <a href="#" class="header__login">Личный кабинет</a>
+        </div>
+      </div>
+      <nav class="header__nav nav">
+        <button class="nav__burger burger btn">
+          <span class="burger__line"></span>
+          <span class="burger__line"></span>
+          <span class="burger__line"></span>
+        </button>
+        <ul class="nav__list hide">
+          <li class="nav__item"><a href="#about" class="nav__link">О нас</a></li>
+          <li class="nav__item"><a href="#services" class="nav__link">Услуги</a></li> 
+          <li class="nav__item"><a href="#advantages" class="nav__link">Преимущества</a></li> 
+          <li class="nav__item"><a href="#accommodation" class="nav__link">Размещение</a></li> 
+          <li class="nav__item"><a href="#contacts" class="nav__link">Блог</a></li> 
+          <li class="nav__item"><a href="#contacts" class="nav__link">Контакты</a></li> 
+        </ul>
+        <form class="nav__search search">
+          <div class="search__input-wrap">
+            <label for="searchInput" class="search__label visually-hidden">Поиск</label>
+            <input id="searchInput" name="search" type="text" class="search__input" placeholder="Поиск">
+            <label for="searchSubmit" class="search__label visually-hidden">Кнопка поиска</label>
+            <button id="searchSubmit" type="submit" class="search__submit">
+              <img src="img/search.svg" loading="lazy" alt="Иконка поиска" aria-hidden="true" class="search__icon">
+            </button>
+            <div class="search__results"></div>
+          </div>
+        </form>
+      </nav>
+    </div>
+  </header>
+  <main class="main">
+    <section class="section first">
+      <div class="container first__container">
+        <div class="first__left first__col">
+          <h2 class="first__heading first__heading_left section__heading">Быстрая бронь</h2>
+          <form action="POST" class="first__booking booking">
+            <div class="booking__input-wrap input-wrap">
+              <label for="bookingCity" class="booking__label visually-hidden">Город</label>
+              <input id="bookingCity" data-validate-field="city" type="text" name="city" class="booking__input" placeholder="Город" required>
+            </div>
+            <div class="booking__input-wrap input-wrap">
+              <label for="bookingRoom" class="booking__label visually-hidden">Категория номера</label>
+              <input id="bookingRoom" type="number" min="1" name="category" class="booking__input" placeholder="Категория номера">
+            </div>
+            <div class="booking__input-wrap input-wrap">
+              <label for="bookingDate" class="booking__label visually-hidden">Дата заселения</label>
+              <input id="bookingDate" data-validate-field="date" data-input="date" type="text" name="date" class="booking__input" placeholder="Дата заселения" required>
+            </div>
+            <div class="booking__input-wrap input-wrap">
+              <label for="bookingNights" class="booking__label visually-hidden">Количество ночей</label>
+              <input id="bookingNights" data-validate-field="nights" type="number" min="1" name="nights" class="booking__input" placeholder="Количество ночей" required>
+            </div>
+            <div class="booking__input-wrap input-wrap">
+              <label for="bookingGuests" class="booking__label visually-hidden">Количество гостей</label>
+              <input id="bookingGuests" type="number" min="0" name="guests" class="booking__input" placeholder="Количество гостей">
+            </div>
+            <div class="booking__submit-wrap">
+              <button type="submit" class="booking__submit btn">Найти номер</button>
+              <div class="booking__available">
+                <span class="booking__number">9 756</span>
+                <span class="booking__text">предложений доступно</span>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="first__right first__col">
+          <h2 class="first__heading first__heading_right section__heading">Спецпредложение</h2>
+          <div class="first__special special">
+            <div class="special__slide special__slide_1 active">
+              <img src="img/luxury.webp" loading="lazy" alt="номер люкс" class="special__image">
+              <h3 class="special__heading">Номера<br>категории<br>люкс</h3>
+              <div class="special__descr">
+                <p class="special__price">от 5 000 р</p>
+                <a href="#" class="special__details">Подробнее</a>
+              </div>
+            </div>
+            <div class="special__slide special__slide_2">
+              <img src="img/weekend.webp" loading="lazy" alt="номер люкс" class="special__image">
+              <h3 class="special__heading">Выходные<br>для всей<br>семьи</h3>
+              <div class="special__descr">
+                <p class="special__price">от 8 000 р</p>
+                <a href="#" class="special__details">Подробнее</a>
+              </div>
+            </div>
+            <div class="special__slide special__slide_3">
+              <img src="img/busy.webp" loading="lazy" alt="номер люкс" class="special__image">
+              <h3 class="special__heading">Для тех ,<br>кто занят<br>делом</h3>
+              <div class="special__descr">
+                <p class="special__price">от 4 000 р</p>
+                <a href="#" class="special__details">Подробнее</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section about" id="about">
+      <div class="container about__container">
+        <h2 class="about__heading section__heading">О нас</h2>
+        <p class="about__text">
+          Идейные соображения высшего порядка, а также сложившаяся структура организации влечет за собой процесс внедрения и модернизации системы обучения кадров, соответствует насущным потребностям. Идейные соображения высшего порядка, а также дальнейшее развитие различных форм деятельности представляет собой интересный эксперимент проверки системы обучения кадров, соответствует насущным потребностям. Равным образом сложившаяся структура организации требуют определения и уточнения существенных финансовых и административных условий.
+        </p>
+      </div>
+    </section>
+    <section class="section services" id="services">
+      <div class="container services__container">
+        <h2 class="services__heading section__heading">Услуги</h2>
+        <div class="services__grid">
+          <div class="services__card">
+            <img src="img/services-1.webp" loading="lazy" alt="бокалы" class="services__image">
+            <div class="services__text-block">
+              <a href="#" class="services__link">Эксклюзивное обслуживание</a>
+              <p class="services__descr">Равным образом постоянный количественный рост и сфера нашей активности</p>
+            </div>
+          </div> 
+          <div class="services__card">
+            <img src="img/services-2.webp" loading="lazy" alt="обеденный стол" class="services__image">
+            <div class="services__text-block">
+              <a href="#" class="services__link">Аренда банкетных залов</a>
+              <p class="services__descr">Значимость этих проблем настолько очевидна, что дальнейшее развитие различных форм.</p>
+            </div>
+          </div>
+          <div class="services__card">
+            <img src="img/services-3.webp" loading="lazy" alt="бассейн" class="services__image">
+            <div class="services__text-block">
+              <a href="#" class="services__link">Сауны, бассейны, бани, фитнес-залы</a>
+              <p class="services__descr">Не следует, однако забывать, что начало повседневной работы по формированию позиции</p>
+            </div>
+          </div>
+          <div class="services__card">
+            <img src="img/services-4.webp" loading="lazy" alt="парковка" class="services__image">
+            <div class="services__text-block">
+              <a href="#" class="services__link">Охраняемые автомобильные стоянки</a>
+              <p class="services__descr">Не следует, однако забывать, что начало повседневной работы по формированию позиции</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section advantages" id="advantages">
+      <div class="container advantages__container">
+        <h2 class="advantages__heading section__heading">Преимущества</h2>
+        <div class="advantages__grid">
+          <div class="advantages__card">
+            <img src="img/bathtub.png" loading="lazy" alt="ванна" class="advantages__image">
+            <p class="advantages__text">
+              Идейные соображения высшего порядка, а также постоянный количественный рост
+            </p>
+          </div>
+          <div class="advantages__card">
+            <img src="img/hanger.png" loading="lazy" alt="вешалка" class="advantages__image">
+            <p class="advantages__text">
+              Значимость этих проблем настолько очевидна, что вопрос остается открытым
+            </p>
+          </div>
+          <div class="advantages__card">
+            <img src="img/heating.png" loading="lazy" alt="батарея обогревателя" class="advantages__image">
+            <p class="advantages__text">
+              Таким образом реализация плановых заданий играет важную роль для понимания
+            </p>
+          </div>
+          <div class="advantages__card">
+            <img src="img/hotel-key.png" loading="lazy" alt="ключ" class="advantages__image">
+            <p class="advantages__text">
+              Повседневная практика показывает, что сложившаяся структура организации
+            </p>
+          </div>
+          <div class="advantages__card">
+            <img src="img/parking.png" loading="lazy" alt="парковка" class="advantages__image">
+            <p class="advantages__text">
+              Равным образом рамки и место обучения кадров способствует подготовки сотрудника
+            </p>
+          </div>
+          <div class="advantages__card">
+            <img src="img/reception.png" loading="lazy" alt="стойка регистрации" class="advantages__image">
+            <p class="advantages__text">
+              Консультация с активом влечет за собой процесс внедрения услуг нашего сервиса 
+            </p>
+          </div>
+          <div class="advantages__card">
+            <img src="img/security-box.png" loading="lazy" alt="сейф" class="advantages__image">
+            <p class="advantages__text">
+              Повседневная практика показывает, что дальнейшее развитие различных форм
+            </p>
+          </div>
+          <div class="advantages__card">
+            <img src="img/swimming-pool.png" loading="lazy" alt="бассейн" class="advantages__image">
+            <p class="advantages__text">
+              Значимость этого настолько очевидна, что консультация наших экспертов помогает
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section accommodation" id="accommodation">
+      <div class="container accommodation__container">
+        <h2 class="accommodation__heading section__heading">Размещение</h2>
+        <div class="accommodation__grid">
+          <div class="accommodation__card">
+            <img src="img/accommodation-1.webp" loading="lazy" alt="Отель вечером" class="accommodation__image">
+            <div class="accommodation__text-block">
+              <div class="accommodation__text-top">
+                <p class="accommodation__price">
+                  <span class="accommodation__price-light">от</span>
+                  <span class="accommodation__price-bold">4 698 р</span>
+                  / ночь
+                </p>
+                <div class="accommodation__stars">
+                  <img src="img/star-filled.png" loading="lazy" alt="Рейтинг отеля 4 из 5" class="accommodation__star">
+                  <img src="img/star-filled.png" loading="lazy" alt="" class="accommodation__star">
+                  <img src="img/star-filled.png" loading="lazy" alt="" class="accommodation__star">
+                  <img src="img/star-filled.png" loading="lazy" alt="" class="accommodation__star">
+                  <img src="img/star-empty.png" loading="lazy" alt="" class="accommodation__star">
+                </div>
+              </div>
+              <p class="accommodation__hotel">Lagoona española</p>
+              <p class="accommodation__location">Барселона, Испания</p>
+              <button class="accommodation__btn btn transition-to-bg">Номера</button>
+            </div>
+          </div>
+          <div class="accommodation__card">
+            <img src="img/accommodation-2.webp" loading="lazy" alt="Отель вечером" class="accommodation__image">
+            <div class="accommodation__text-block">
+              <div class="accommodation__text-top">
+                <p class="accommodation__price">
+                  <span class="accommodation__price-light">от</span>
+                  <span class="accommodation__price-bold">5 148 р</span>
+                  / ночь
+                </p>
+                <div class="accommodation__stars">
+                  <img src="img/star-filled.png" loading="lazy" alt="Рейтинг отеля 4 из 5" class="accommodation__star">
+                  <img src="img/star-filled.png" loading="lazy" alt="" class="accommodation__star">
+                  <img src="img/star-filled.png" loading="lazy" alt="" class="accommodation__star">
+                  <img src="img/star-filled.png" loading="lazy" alt="" class="accommodation__star">
+                  <img src="img/star-empty.png" loading="lazy" alt="" class="accommodation__star">
+                </div>
+              </div>
+              <p class="accommodation__hotel">Lagoona son típicas</p>
+              <p class="accommodation__location">Барселона, Испания</p>
+              <button class="accommodation__btn btn transition-to-bg">Номера</button>
+            </div>
+          </div>
+          <div class="accommodation__card">
+            <img src="img/accommodation-3.webp" loading="lazy" alt="Отель вечером" class="accommodation__image">
+            <div class="accommodation__text-block">
+              <div class="accommodation__text-top">
+                <p class="accommodation__price">
+                  <span class="accommodation__price-light">от</span>
+                  <span class="accommodation__price-bold">6 254 р</span>
+                  / ночь
+                </p>
+                <div class="accommodation__stars">
+                  <img src="img/star-filled.png" loading="lazy" alt="Рейтинг отеля 5 из 5" class="accommodation__star">
+                  <img src="img/star-filled.png" loading="lazy" alt="" class="accommodation__star">
+                  <img src="img/star-filled.png" loading="lazy" alt="" class="accommodation__star">
+                  <img src="img/star-filled.png" loading="lazy" alt="" class="accommodation__star">
+                  <img src="img/star-empty.png" loading="lazy" alt="" class="accommodation__star">
+                </div>
+              </div>
+              <p class="accommodation__hotel">Lagoona de la guerra</p>
+              <p class="accommodation__location">Барселона, Испания</p>
+              <button class="accommodation__btn btn transition-to-bg">Номера</button>
+            </div>
+          </div>
+          <div class="accommodation__card">
+            <img src="img/accommodation-4.webp" loading="lazy" alt="Отель вечером" class="accommodation__image">
+            <div class="accommodation__text-block">
+              <div class="accommodation__text-top">
+                <p class="accommodation__price">
+                  <span class="accommodation__price-light">от</span>
+                  <span class="accommodation__price-bold">6 320 р</span>
+                  / ночь
+                </p>
+                <div class="accommodation__stars">
+                  <img src="img/star-filled.png" loading="lazy" alt="Рейтинг отеля 5 из 5" class="accommodation__star">
+                  <img src="img/star-filled.png" loading="lazy" alt="" class="accommodation__star">
+                  <img src="img/star-filled.png" loading="lazy" alt="" class="accommodation__star">
+                  <img src="img/star-filled.png" loading="lazy" alt="" class="accommodation__star">
+                  <img src="img/star-empty.png" loading="lazy" alt="" class="accommodation__star">
+                </div>
+              </div>
+              <p class="accommodation__hotel">Lagoona mentira piadosa</p>
+              <p class="accommodation__location">Барселона, Испания</p>
+              <button class="accommodation__btn btn transition-to-bg">Номера</button>
+            </div>
+          </div>
+          <div class="accommodation__card">
+            <img src="img/accommodation-5.webp" loading="lazy" alt="Отель вечером" class="accommodation__image">
+            <div class="accommodation__text-block">
+              <div class="accommodation__text-top">
+                <p class="accommodation__price">
+                  <span class="accommodation__price-light">от</span>
+                  <span class="accommodation__price-bold">6 457 р</span>
+                  / ночь
+                </p>
+                <div class="accommodation__stars">
+                  <img src="img/star-filled.png" loading="lazy" alt="Рейтинг отеля 4 из 5" class="accommodation__star">
+                  <img src="img/star-filled.png" loading="lazy" alt="" class="accommodation__star">
+                  <img src="img/star-filled.png" loading="lazy" alt="" class="accommodation__star">
+                  <img src="img/star-filled.png" loading="lazy" alt="" class="accommodation__star">
+                  <img src="img/star-empty.png" loading="lazy" alt="" class="accommodation__star">
+                </div>
+              </div>
+              <p class="accommodation__hotel">Lagoona empujar la creatividad</p>
+              <p class="accommodation__location">Барселона, Испания</p>
+              <button class="accommodation__btn btn transition-to-bg">Номера</button>
+            </div>
+          </div>
+          <div class="accommodation__card">
+            <img src="img/accommodation-6.webp" loading="lazy" alt="Отель вечером" class="accommodation__image">
+            <div class="accommodation__text-block">
+              <div class="accommodation__text-top">
+                <p class="accommodation__price">
+                  <span class="accommodation__price-light">от</span>
+                  <span class="accommodation__price-bold">6 490 р</span>
+                  / ночь
+                </p>
+                <div class="accommodation__stars">
+                  <img src="img/star-filled.png" loading="lazy" alt="Рейтинг отеля 4 из 5" class="accommodation__star">
+                  <img src="img/star-filled.png" loading="lazy" alt="" class="accommodation__star">
+                  <img src="img/star-filled.png" loading="lazy" alt="" class="accommodation__star">
+                  <img src="img/star-filled.png" loading="lazy" alt="" class="accommodation__star">
+                  <img src="img/star-empty.png" loading="lazy" alt="" class="accommodation__star">
+                </div>
+              </div>
+              <p class="accommodation__hotel">Lagoona el retorno</p>
+              <p class="accommodation__location">Барселона, Испания</p>
+              <button class="accommodation__btn btn transition-to-bg">Номера</button>
+            </div>
+          </div>
+          <div class="accommodation__card">
+            <img src="img/accommodation-7.webp" loading="lazy" alt="Отель вечером" class="accommodation__image">
+            <div class="accommodation__text-block">
+              <div class="accommodation__text-top">
+                <p class="accommodation__price">
+                  <span class="accommodation__price-light">от</span>
+                  <span class="accommodation__price-bold">6 505 р</span>
+                  / ночь
+                </p>
+                <div class="accommodation__stars">
+                  <img src="img/star-filled.png" loading="lazy" alt="Рейтинг отеля 5 из 5" class="accommodation__star">
+                  <img src="img/star-filled.png" loading="lazy" alt="" class="accommodation__star">
+                  <img src="img/star-filled.png" loading="lazy" alt="" class="accommodation__star">
+                  <img src="img/star-filled.png" loading="lazy" alt="" class="accommodation__star">
+                  <img src="img/star-empty.png" loading="lazy" alt="" class="accommodation__star">
+                </div>
+              </div>
+              <p class="accommodation__hotel">Lagoona enfermo terminó</p>
+              <p class="accommodation__location">Барселона, Испания</p>
+              <button class="accommodation__btn btn transition-to-bg">Номера</button>
+            </div>
+          </div>
+          <div class="accommodation__card">
+            <img src="img/accommodation-8.webp" loading="lazy" alt="Отель вечером" class="accommodation__image">
+            <div class="accommodation__text-block">
+              <div class="accommodation__text-top">
+                <p class="accommodation__price">
+                  <span class="accommodation__price-light">от</span>
+                  <span class="accommodation__price-bold">6 824 р</span>
+                  / ночь
+                </p>
+                <div class="accommodation__stars">
+                  <img src="img/star-filled.png" loading="lazy" alt="Рейтинг отеля 4 из 5" class="accommodation__star">
+                  <img src="img/star-filled.png" loading="lazy" alt="" class="accommodation__star">
+                  <img src="img/star-filled.png" loading="lazy" alt="" class="accommodation__star">
+                  <img src="img/star-filled.png" loading="lazy" alt="" class="accommodation__star">
+                  <img src="img/star-empty.png" loading="lazy" alt="" class="accommodation__star">
+                </div>
+              </div>
+              <p class="accommodation__hotel">Lagoona suerte siguió siempre</p>
+              <p class="accommodation__location">Барселона, Испания</p>
+              <button class="accommodation__btn btn transition-to-bg">Номера</button>
+            </div>
+          </div>
+          <div class="accommodation__card accommodation__card_all">
+            <img src="img/all-options.webp" loading="lazy" alt="Скалистый берег моря" class="accommodation__image-all">
+            <a href="#" class="accommodation__link-all">Посмотреть все варианты</a>
+          </div>
+        </div>
+      </div>
+      </section>
+      <section class="section contacts" id="contacts">
+        <div class="container contacts__container">
+          <h2 class="contacts__heading contacts__heading_left section__heading">Контакты</h2>
+          <div class="contacts__row">
+            <div class="contacts__left contacts__col">
+              <ul class="contacts__info info">
+                <li class="info__item">
+                  <div class="info__left">Адрес</div> 
+                  <div class="info__right">
+                    <p class="info__text">
+                      Москва, улица Юности, дом 5 строение 4, офис 2
+                    </p>
+                  </div>
+                </li>
+                <li class="info__item info__item_phone">
+                  <div class="info__left">Телефоны</div> 
+                  <div class="info__right">
+                    <a href="tel:+7995356434" class="info__phone info__link">+7 (499) 535-64-34</a>
+                    <a href="tel:+74950050544" class="info__phone info__link">+7 (495) 005-05-44</a>
+                  </div>
+                </li>
+                <li class="info__item info__item_email">
+                  <div class="info__left">E-mail</div> 
+                  <div class="info__right">
+                    <p class="info__text info__text_email">
+                      <a href="mailto:lg.oona@mail.ru" class="info__email info__link">lg.oona@mail.ru</a> 
+                      по вопросам бронирования
+                    </p>
+                    <p class="info__text info__text_email">
+                      <a href="mailto:hotels.ln@mail.ru" class="info__email info__link">hotels.ln@mail.ru</a> 
+                      по вопросам сотрудничества
+                    </p>
+                  </div>
+                </li>
+                <li class="info__item info__item_schedule">
+                  <div class="info__left">График</div> 
+                  <div class="info__right">
+                    <p class="info__text">
+                      Понедельник - пятница, <br>с 10:0 до 19:00
+                    </p>
+                  </div>
+                </li>
+                <li class="info__item info__item_btn">
+                  <button class="info__btn btn transition-to-bg">Построить маршрут</button>
+                </li>
+              </ul>
+            </div>
+            <div class="contacts__right contacts__col">
+              <div class="contacts__map map" id="map"></div>
+              <div class="contacts__feedback-wrap">
+                <h2 class="contacts__heading contacts__heading_right section__heading">Напишите нам</h2>
+                <form action="POST" class="contacts__feedback feedback">
+                  <div class="feedback__input-wrap input-wrap">
+                    <label for="feedbackName" class="feedback__label visually-hidden">Имя</label>
+                    <input type="text" data-validate-field="name" name="name" id="feedbackName" class="feedback__input" placeholder="Имя" required>
+                  </div>
+                  <div class="feedback__input-wrap input-wrap">
+                    <label for="feedbackTel" class="feedback__label visually-hidden">Телефон</label>
+                    <input type="text" data-validate-field="phone" name="tel" data-input="tel" id="feedbackTel" class="feedback__input" value="+375" required>
+                  </div>
+                  <div class="feedback__input-wrap input-wrap">
+                    <label for="feedbackMessage" class="feedback__label visually-hidden">Сообщение</label>
+                    <textarea name="message" data-validate-field="text" id="feedbackMessage" class="feedback__input feedback__message" placeholder="Сообщение..." required></textarea>
+                  </div>
+                  <button type="submit" class="feedback__submit btn">Отправить</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+  </main>
+  <footer class="footer">
+    <div class="container footer__container">
+      <div class="footer__main">
+        <div class="footer__left footer__col">
+          <p class="footer__text footer__company">
+            © 2012-2020 Управляющая компания Объединенной сети «Лагуна Хотелс»
+          </p>
+          <p class="footer__text footer__disclaimer">
+            Представленная на сайте информация носит справочный характер <br>и не является публичной офертой
+          </p>
+          <a href="#" class="footer__link footer__privacy">Политика конфиденциальности</a>
+        </div>
+        <div class="footer__central footer__col">
+          <p class="footer__text footer__address">
+            11710, улица Юности, дом 5 строение 4, офис 2
+          </p>
+          <div class="footer__tel-wrap">
+            <a href="tel:+74995356434" class="footer__link footer__tel">+7 (499) 535-64-34</a>
+            <a href="tel:+74950050544" class="footer__link footer__tel">+7 (495) 005-05-44</a>
+          </div>
+          <div class="footer__email-wrap">
+            <a href="mailto:lg.oona@mail.ru " class="footer__link footer__email">lg.oona@mail.ru</a>
+            <a href="mailto:hotels.ln@mail.ru " class="footer__link footer__email">hotels.ln@mail.ru</a>
+          </div>
+        </div>
+        <div class="footer__social social footer__col">
+          <ul class="social__list">
+            <li class="social__item">
+              <a href="#" class="social__link">
+                <img src="img/tripadvisor.png" loading="lazy" alt="tripadvisor" class="social__image">
+              </a>
+            </li>
+            <li class="social__item">
+              <a href="#" class="social__link">
+                <img src="img/twitter.png" loading="lazy" alt="twitter" class="social__image">
+              </a>
+            </li>
+            <li class="social__item">
+              <a href="#" class="social__link">
+                <img src="img/facebook.png" loading="lazy" alt="facebook" class="social__image">
+              </a>
+            </li>
+            <li class="social__item">
+              <a href="#" class="social__link">
+                <img src="img/vk.png" loading="lazy" alt="vk" class="social__image">
+              </a>
+            </li>
+            <li class="social__item">
+              <a href="#" class="social__link">
+                <img src="img/google-plus.png" loading="lazy" alt="google-plus" class="social__image">
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>
