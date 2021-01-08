@@ -5,8 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "webpack serve --mode development --env=serve",
-    "dev": "webpack --mode development --env=dev",
-    "prod": "webpack --mode production --env=prod"
+    "dev": "webpack --mode development --env dev",
+    "prod": "webpack --mode production --env prod"
   },
   "author": "",
   "license": "ISC",

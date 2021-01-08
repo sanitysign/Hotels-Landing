@@ -32,7 +32,7 @@ module.exports = env => {
       publicPath: 'http://localhost:8080/',
     },
   
-    devtool: env.dev ? 'source-map' : false,
+    devtool: env.serve ? 'inline-cheap-module-source-map' : 'source-map' ,
   
     devServer: {
       contentBase: path.resolve(__dirname, './dist'),
