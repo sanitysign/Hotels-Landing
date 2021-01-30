@@ -332,7 +332,7 @@ body {
     padding: 5px 64px 5px 20px;
     font-family: 'Muller', sans-serif, 'Segoe UI', Tahoma, Geneva, Verdana;
     color: #bebebe;
-    border-radius: 12px;
+    border-radius: 15px;
     border: none;
     background-color: inherit;
 
@@ -344,7 +344,7 @@ body {
 
     &:focus {
       outline: none;
-      box-shadow: 0 0 2px 4px rgba($text-main, .3);
+      box-shadow: 0 0 2px 4px rgba($text-main, .1);
     }
   }
 
@@ -1052,7 +1052,7 @@ body {
   }
 
   &__submit {
-    padding: 17px 127px 20px 128px;
+    padding: 18px 128px;
     font-family: 'Muller', sans-serif, 'Segoe UI', Tahoma, Geneva, Verdana;
     color: #fff;
     font-size: 16px;

@@ -4,7 +4,7 @@ import 'imask/esm/masked/number'
 
 const telInput = document.querySelector('.feedback [data-input="tel"]')
 const telMask = IMask(telInput, {
-  mask: '+375 (00) 000-00-00'
+  mask: '+7 (000) 000-00-00'
 })
 
 let formOptions = {
@@ -36,7 +36,7 @@ let formOptions = {
       function: (name, value) => {
 
         if (telMask.unmaskedValue) {
-          return telMask.unmaskedValue.length === 9
+          return telMask.unmaskedValue.length === 10
         }
       },
     },
